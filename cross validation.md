@@ -3,6 +3,19 @@
 - cross-validation is a step in the process of building a machine learning model which
 helps us ensure that our models fit the data accurately and also ensures that we do
 not overfit.
+- Cross-validation is a method of evaluating a machine learning model’s performance across random samples of the dataset.
+    - This assures that any biases in the dataset are captured.
+    - Cross-validation can help us to obtain reliable estimates of the model’s generalization error,    that is, how well the model performs on unseen data.
+- In KNN ML model CV can help in selecting the right K value for KNN, For every k we determine test accuracy and select k that gives best accuracy on test set
+    - Ex:
+    1. Dataset is split randomly into train and test set;
+    2. Train set is further divided randomly into k’ equal sized parts;
+    3. For each k hyper parameter in kNN, we will use k’-1 parts of train set for training and the remaining 1 part of train set as cross validation data set, we then compute accuracy or model performance on cross validation data set; we will roll around the parts of train data set to get k’ accuracies for k = 1 (kNN hyperparameter), we will then average this accuracies for k = 1; as a result we will have average of k’ accuracies of the train set; this is called as k’-fold cross validation, we will repeat the k’ fold cross validation for all hyper parameter k value choices;
+    4. We pick best k from best average k’ cross validation accuracies;
+    5. And apply the best hyper parameter for measuring performance on test set;
+- CV can be used to check whether ML model is generalizing across all folds of CV
+- CV can be used to find hyperparameter values of ML model
+    - ex: K in KNN
 
 ### Types of CV
 

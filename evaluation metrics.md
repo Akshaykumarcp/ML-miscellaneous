@@ -35,19 +35,26 @@ Before learning about precision, we need to know a few terms. Here we have
 assumed that chest x-ray images with pneumothorax are positive class (1) and
 without pneumothorax are negative class (0).
 
-- True positive (TP): Given an image, if your model predicts the image has
-pneumothorax, and the actual target for that image has pneumothorax, it is
-considered a true positive.
-- True negative (TN): Given an image, if your model predicts that the image does not
-have pneumothorax and the actual target says that it is a non-pneumothorax image,
-it is considered a true negative.
-
+- True positive (TP):
+    - Given an image, if your model predicts the image has
+        pneumothorax, and the actual target for that image has pneumothorax, it is
+        considered a true positive.
+    - Outcome where the model correctly predicts the positive class.
+- True negative (TN):
+    - Given an image, if your model predicts that the image does not
+        have pneumothorax and the actual target says that it is a non-pneumothorax image,
+        it is considered a true negative.
+    - Outcome where the model correctly predicts the negative class.
 In simple words, if your model correctly predicts positive class, it is true positive,
 and if your model accurately predicts negative class, it is a true negative.
-- False positive (FP): Given an image, if your model predicts pneumothorax and the
-actual target for that image is non- pneumothorax, it a false positive.
-- False negative (FN): Given an image, if your model predicts non-pneumothorax
-and the actual target for that image is pneumothorax, it is a false negative.
+- False positive (FP):
+    - Given an image, if your model predicts pneumothorax and the
+        actual target for that image is non- pneumothorax, it a false positive.
+    - (Type 1 Error): Outcome where the model incorrectly predicts the positive class.
+- False negative (FN):
+    - Given an image, if your model predicts non-pneumothorax
+        and the actual target for that image is pneumothorax, it is a false negative.
+    - (Type 2 Error): Outcome where the model incorrectly predicts the negative class.
 
 In simple words, if your model incorrectly (or falsely) predicts positive class, it is
 a false positive. If your model incorrectly (or falsely) predicts negative class, it is a
@@ -128,6 +135,8 @@ false negative.
     ```
 
 - Precision
+    - attempts to answer “What proportion of positive identifications was actually correct?”
+    - of all the predicted positives how many are actually positive
     - Precision = TP / (TP + FP)
     - Let’s say we make a new model on the new skewed dataset and our model correctly
         identified 80 non-pneumothorax out of 90 and 8 pneumothorax out of 10.
@@ -158,6 +167,8 @@ false negative.
         ```
 
 - Recall OR True Positive Rate (TPR) OR Sensitivity
+    - attempts to answer “What proportion of actual positives was identified correctly?”
+    - of all actual positives how many are predicted positive
     - Recall/TPR = TP / (TP + FN)
     - In the above case recall is 8 / (8 + 2) = 0.80. This means our model identified 80%
         of positive samples correctly.
@@ -204,7 +215,8 @@ false negative.
 - F1 score
     - F1 score is a metric that combines both precision and recall.
     - It is defined as a simple
-        weighted average (harmonic mean) of precision and recall. If we denote precision
+        weighted average (harmonic mean) of precision and recall.
+    - If we denote precision
         using P and recall using R, we can represent the F1 score as:
     - F1 = 2PR / (P + R) OR
     - F1 = 2TP / (2TP + FP + FN)
@@ -330,6 +342,8 @@ false negative.
             threshold that is best suited for your problem and datasets.
         - Most of the time, the top-left value on ROC curve should give you a quite good
             threshold
+    - The AUC-ROC Curve is a performance measurement for classification problems that tells us how much a model is capable of distinguishing between classes.
+    - A higher AUC means that a model is more accurate.
 
 - log loss
     - Log Loss = - 1.0 * ( target * log(prediction) + (1 - target) * log(1 - prediction) )
@@ -479,7 +493,10 @@ Note: P@k, AP@k and MAP@k all range from 0 to 1 with 1 being the best.
 
 - Error = True Value – Predicted Value
 - Absolute Error = Abs ( True Value – Predicted Value )
-- mean absolute error (MAE) =  It’s just mean of all absolute errors
+- mean absolute error (MAE)
+    - It’s just mean of all absolute errors
+    - The absolute error is the difference between the predicted values and the actual values.
+    - Thus, the mean absolute error is the average of the absolute error
     ```
     import numpy as np
     def mean_absolute_error(y_true, y_pred):
@@ -501,6 +518,7 @@ Note: P@k, AP@k and MAP@k all range from 0 to 1 with 1 being the best.
     ```
 - squared error = ( True Value – Predicted Value )2
 - mean squared error (MSE)
+    - The mean squared error or MSE is similar to the MAE, except you take the average of the squared differences between the predicted values and the actual values
     ```
     def mean_squared_error(y_true, y_pred):
         """
@@ -616,3 +634,7 @@ Note: P@k, AP@k and MAP@k all range from 0 to 1 with 1 being the best.
         # return 1 - ratio
         return 1 – ratio
     ```
+- Ajusted R square
+    - Every additional independent variable added to a model always increases the R² value
+    - therefore, a model with several independent variables may seem to be a better fit even if it isn’t.
+    - Thus, the adjusted R² compensates for each additional independent variable and only increases if each given variable improves the model above what is possible by probability.
