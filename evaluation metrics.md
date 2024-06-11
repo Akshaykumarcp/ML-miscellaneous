@@ -638,3 +638,6 @@ Note: P@k, AP@k and MAP@k all range from 0 to 1 with 1 being the best.
     - Every additional independent variable added to a model always increases the R² value
     - therefore, a model with several independent variables may seem to be a better fit even if it isn’t.
     - Thus, the adjusted R² compensates for each additional independent variable and only increases if each given variable improves the model above what is possible by probability.
+
+### Online references:
+- [deep.ai eval metrics](https://deepai.org/machine-learning-glossary-and-terms/evaluation-metrics#:~:text=What%20are%20Evaluation%20Metrics%3F,available%20to%20test%20a%20model.)
